@@ -1,38 +1,29 @@
 import pygame as pg
+import sys
+from scenes.main_menu import Menu
+from scenes.game_window import Game
 
 pg.init()
 
-def main_game():
-
-    # important variables 
-    clock = pg.time.Clock()
-    frames_per_second = 60
-
-    # screen configurations
-    window = pg.display.set_mode((0,0), pg.FULLSCREEN)
-    pg.display.set_caption("Sem Nome")
 
 
-    # loop configurations
-    run = True
+# important variables 
+clock = pg.time.Clock()
+frames_per_second = 60
 
-    while run:
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                run = False
-            elif event.type == pg.KEYDOWN:
-                if event.key == pg.K_ESCAPE:
-                    run = False
-
-        
-        #screen updates
-        clock.tick()
-        pg.display.flip()
-
-    # end configurations
-    pg.quit()
+# screen configurations
+pg.display.set_caption("Sem Nome")
 
 
-# init only in this archive
-if __name__ == "__main__":
-    main_game()
+# scene swift
+scene = 'menu'
+
+while True:
+
+    if scene == 'menu':
+        menu = Menu(pg.display.set_mode((1280, 720)))
+        scene = menu.run()
+    
+    elif scene == 'game':
+        game = Game(pg.display.set_mode((0,0), pg.FULLSCREEN))
+        scene = game.run()
