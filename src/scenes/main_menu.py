@@ -21,22 +21,30 @@ class Menu:
         while self.running:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
-                    sys.exit()
                     self.running = False
                     return 'quit'
+                    sys.exit()
+                    
 
             
             # background
             self.screen.blit(self.background, (0, 0))
             
             
-            #button
-            if draw_button(self.screen, "Começar", 540, 330, 200, 60, (0, 128, 255), (0, 200, 255), self.font):
+            #button play
+            if draw_button(self.screen, "Jogar", 440, 230, 400, 60, (205,133,63), (210,105,30), self.font):
                 return 'game'
+            
+            #button options
+            if draw_button(self.screen, "Opções", 440, 330, 400, 60, (205,133,63), (210,105,30), self.font):
+                return 'options'
+            
+            #button leave game
+            if draw_button(self.screen, "Sair do Jogo", 440, 430, 400, 60, (205,133,63), (210,105,30), self.font):
+                self.running = False
+                sys.exit()
             
             
             # updates
             pg.display.flip()
-        
-        pg.quit()
         
